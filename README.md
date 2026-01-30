@@ -40,3 +40,7 @@
 ---
 
 ## Приклад роботи програми
+enter text: Hello World
+enter the offset: 3
+Encrypted text: Khoor Zruog
+Decrypted text: Hello World
