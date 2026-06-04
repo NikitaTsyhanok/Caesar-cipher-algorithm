@@ -1,45 +1,38 @@
 #include <iostream>
 #include <string>
-
-using namespace std;
 const int abc = 26;
 
+std::string caesarEncrypt(const std::string& text, int shift) {
+    std::string result = "";
 
-string caesarEncrypt(const string text, int shift) { 
-    string result = text;
-    shift = shift % abc;
+    for (int i = 0; i < text.length(); i++) {
+        char c = text[i];
+        char encryptedChar;
 
-    for (int i = 0; i < result.length(); i++) {
-        char c = result[i];
-
-        if (c >= 'A' && c <= 'Z') {
-            result[i] = 'A' + (c - 'A' + shift + abc) % abc;
+        if (c >= 'a' && c <= 'z') {
+            encryptedChar = (c - 'a' + shift) % abc + 'a';
         }
-        else if (c >= 'a' && c <= 'z') {
-            result[i] = 'a' + (c - 'a' + shift + abc) % abc;
+        else if (c >= 'A' && c <= 'Z') {
+            encryptedChar = (c - 'A' + shift) % abc + 'A';
         }
+        else {
+            encryptedChar = c;
+        }
+
+        result += encryptedChar;
     }
+
     return result;
 }
-
-string caesarDecrypt(const string text, int shift) {
-    return caesarEncrypt(text, -shift);
-}
-
 int main() {
-    string text;
-    int shift;
+	std::string text;
+	int shift;
 
-    cout << "enter text: ";
-    getline(cin, text);
+	std::cout << "Enter text for encrypt" << std::endl;
+	std::getline(std::cin, text);
+	std::cout << "Enter shift key" << std::endl;
+	std::cin >> shift;
+	std::cout << "Encrypted text: " << caesarEncrypt(text, shift) << std::endl;
 
-    cout << "enter the offset: ";
-    cin >> shift;
-
-    cout << "Encrypted text: "
-        << caesarEncrypt(text, shift) << endl;
-
-    cout << "Decrypted text: "
-        << caesarDecrypt(caesarEncrypt(text, shift), shift) << endl;
-
+    while (true);
 }
